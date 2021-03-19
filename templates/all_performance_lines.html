@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Operation Lines</title>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+
+</head>
+<body>
+<div id="ht_lines" style="width:1200px; height:700px;">
+	    <script>
+	        var chart = echarts.init(document.getElementById('ht_lines'), 'white', {renderer: 'canvas'});
+
+	        $(
+	            function () {
+	                fetchData(chart);
+	            }
+	        );
+
+	        function fetchData() {
+	            $.ajax({
+	                type: "GET",
+	                url: "http://127.0.0.1:8000/ht_lines",
+	                dataType: 'json',
+	                success: function (result) {
+	                    chart.setOption(result.data);
+	                }
+	            });
+	        }
+	    </script>
+    </div>
+</body>
+</html>
